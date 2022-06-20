@@ -24,7 +24,7 @@ window.onload = function()	{
           
     }   else    {
         //display generic readme if no path specified
-        document.getElementById("readme").innerHTML = "<div><p><h2>Hi payroc (=</h2></p> Thank you for using the URL shortening service. Please go to <b>http://irelandmalayalikal.ie/add.html</b> to shorten new URL. The final shortened URL will be shown as alert.</div>";
+        document.getElementById("readme").innerHTML = "<div><p><h2>Hi payroc (=</h2></p> Thank you for using the URL shortening service. Please go to <b><a href='http://irelandmalayalikal.ie/add.html'>http://irelandmalayalikal.ie/add.html</a></b> to shorten new URL. The final shortened URL will be shown as alert.</div>";
         document.getElementById("readme").style.display = "block";
     }
 };
