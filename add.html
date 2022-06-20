@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <script src="md5.js"></script>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function addUrl()   {
+                var key = "";
+                var longUrl = document.getElementById("longUrl").value;
+                var postUrl = "https://payroctest-default-rtdb.europe-west1.firebasedatabase.app/[KEY].json";
+                
+                //calculate md5 of Date.now()
+                var hash = md5(String(Date.now()));
+                
+                //take random chars from the hash and use as key
+                for(let i=0; i<6; i++)  {
+                    key += hash.charAt(Math.floor(Math.random() * hash.length));   
+                }
+                
+                //generate post url to save to firebase realtime database
+                postUrl = postUrl.replace("[KEY]", key);
+                
+                var myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+            
+                var requestOptions = {
+                  method: 'POST',
+                  headers: myHeaders,
+                  body: JSON.stringify(longUrl),
+                  redirect: 'follow'
+                };
+                
+                fetch(postUrl, requestOptions)
+                  .then(response => response.text())
+                  .then(result => console.log(result))
+                  .catch(error => console.log('error', error));
+                 
+                alert("Your short url is: http://www.irelandmalayalikal.ie/" + key);
+            }
+        </script>
+        
+        <input id="longUrl" type="text" />
+        <button id="addBtn" onclick="addUrl()">Add</button>
+    </body>
+</html>
